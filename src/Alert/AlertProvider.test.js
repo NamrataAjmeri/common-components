@@ -9,7 +9,6 @@ describe('Alert Provider tests', () => {
             <AlertProvider />
         );
         const alertComponent = queryByTestId('message-id');
-        //fireEvent.click(addSettingsButton);
         expect(alertComponent).toBeFalsy();
         });
 });
