@@ -26,7 +26,7 @@ const Alert = ({
     >
       {showIcon && <FontAwesome name={icon} className={`${cx("icon")}`} />}
 
-      <span className={cx("message")}>{message}</span>
+      <span className={cx("message")} data-testid='message-id'>{message}</span>
 
       {onClose && (
         <FontAwesome
@@ -35,6 +35,7 @@ const Alert = ({
           })}
           name="times fa fa-fw"
           onClick={onClose}
+          data-testid='on-close-id'
         />
       )}
     </div>
