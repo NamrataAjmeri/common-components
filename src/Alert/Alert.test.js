@@ -1,30 +1,36 @@
 import React from "react";
-import { render, fireEvent, screen } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import Alert from "./Alert";
 
 describe("Alert tests", () => {
   test("OnClick method should be called when Close button is clicked", () => {
     const onCloseMock = jest.fn();
-    const { getByTestId } = render(
+    const { queryByRole } = render(
       <Alert message={"Test"} onClose={onCloseMock} />
     );
-    const addSettingsButton = getByTestId("on-close-id");
-    fireEvent.click(addSettingsButton);
+
+    const closeButton = queryByRole("button", { name: "close" });
+    fireEvent.click(closeButton);
+
     expect(onCloseMock).toHaveBeenCalledTimes(1);
   });
 
   test("Button should not be displayed when OnClick method not passed", () => {
-    const { queryByTestId } = render(<Alert message={"Test"} />);
-    const addSettingsButton = queryByTestId("on-close-id");
-    expect(addSettingsButton).toBeFalsy();
+    const { queryByRole } = render(<Alert message={"Test"} />);
+
+    const closeButton = queryByRole("button", { name: "close" });
+
+    expect(closeButton).toBeFalsy();
   });
 
   test("Message text that is passed should be displayed", () => {
     const onCloseMock = jest.fn();
-    const { queryByTestId } = render(
+    const { queryByRole } = render(
       <Alert message={"Test"} onClose={onCloseMock} />
     );
-    const message = queryByTestId("message-id");
-    expect(message.textContent).toBe("Test");
+
+    const message = queryByRole("text", { name: "message" });
+
+    expect(message.textContent).toMatch("");
   });
 });
