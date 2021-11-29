@@ -58,4 +58,24 @@ describe("Alert Provider tests", () => {
 
     expect(queryByRole("alert")).toBeFalsy();
   });
+
+  test("Alert message should get deleted when exceeds max alerts", async () => {
+    const message = "Test Message";
+    const { queryByText, queryByLabelText, queryByRole, queryAllByRole } =
+      render(
+        <AlertProvider timeout={100}>
+          <MockAlerts message={message} />
+        </AlertProvider>
+      );
+
+    const addAlertButton = queryByText("Add Alert");
+    fireEvent.click(addAlertButton);
+    fireEvent.click(addAlertButton);
+    fireEvent.click(addAlertButton);
+    fireEvent.click(addAlertButton);
+    fireEvent.click(addAlertButton);
+    fireEvent.click(addAlertButton);
+    fireEvent.click(addAlertButton);
+    expect(queryAllByRole("alert").length).toEqual(5);
+  });
 });

@@ -43,23 +43,23 @@ const useManageAlerts = ({
     const id = uuidv4();
     if (alertList.length + 1 > maxAlerts) {
       removeAlert();
+    } else {
+      const newAlertMessage = {
+        ...defaultAlert,
+        ...newAlert,
+        id,
+      };
+
+      setAlertList((alertList) => {
+        return isTop
+          ? [newAlertMessage, ...alertList]
+          : [...alertList, newAlertMessage];
+      });
+
+      setTimeout(() => {
+        removeById(id);
+      }, timeout);
     }
-
-    const newAlertMessage = {
-      ...defaultAlert,
-      ...newAlert,
-      id,
-    };
-
-    setAlertList((alertList) => {
-      return isTop
-        ? [newAlertMessage, ...alertList]
-        : [...alertList, newAlertMessage];
-    });
-
-    setTimeout(() => {
-      removeById(id);
-    }, timeout);
   };
 
   return { alertList, addAlert, removeAlert, removeById };
