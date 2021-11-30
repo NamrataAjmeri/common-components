@@ -61,12 +61,11 @@ describe("Alert Provider tests", () => {
 
   test("Alert message should get deleted when exceeds max alerts", async () => {
     const message = "Test Message";
-    const { queryByText, queryByLabelText, queryByRole, queryAllByRole } =
-      render(
-        <AlertProvider timeout={100}>
-          <MockAlerts message={message} />
-        </AlertProvider>
-      );
+    const { queryByText, queryAllByRole } = render(
+      <AlertProvider timeout={100}>
+        <MockAlerts message={message} />
+      </AlertProvider>
+    );
 
     const addAlertButton = queryByText("Add Alert");
     fireEvent.click(addAlertButton);
