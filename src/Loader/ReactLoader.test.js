@@ -2,8 +2,8 @@ import React from "react";
 import { render } from "@testing-library/react";
 import ReactLoader from "./ReactLoader";
 
-describe("ReactLoader Provider tests", () => {
-  test("Children1 does not get rendered and progress bar is shown when loading is in progress", () => {
+describe("ReactLoader tests", () => {
+  test("Children does not get rendered when loading is in progress", () => {
     const { queryByRole, queryByText } = render(
       <ReactLoader loaded={false}>
         <div>Loaded Test</div>
