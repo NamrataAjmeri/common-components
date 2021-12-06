@@ -25,7 +25,6 @@ describe("Button tests", () => {
     );
 
     const result = queryByText("Button Text");
-    expect(container.firstChild.firstChild.className).toMatch(/fa-download/);
     expect(result.textContent).toMatch(buttonContent);
   });
 
@@ -37,7 +36,7 @@ describe("Button tests", () => {
     const variant = "primary";
     const onClick = jest.fn();
 
-    const { container } = render(
+    const { getByRole } = render(
       <Button
         className={className}
         icon={icon}
@@ -48,7 +47,7 @@ describe("Button tests", () => {
         <div className="content">{buttonContent}</div>
       </Button>
     );
-    fireEvent.click(container.firstChild);
+    fireEvent.click(getByRole("button"));
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 });
