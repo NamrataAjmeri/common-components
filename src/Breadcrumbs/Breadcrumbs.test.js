@@ -1,10 +1,10 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import Breadcrumbs from "./Breadcrumbs";
-//import userEvent from "@testing-library/user-event";
+import userEvent from "@testing-library/user-event";
 
 describe("Breadcrumbs tests", () => {
-  test("one breadcrumb should be displayed when one breadcrumb is given as input ", () => {
+  test("one breadcrumb should be displayed when given as input ", () => {
     const title = "A title";
     const onClick = jest.fn();
     const islastCrumb = true;
@@ -27,7 +27,7 @@ describe("Breadcrumbs tests", () => {
     expect(breadcrumb.children[0]).toBeFalsy();
   });
 
-  test("More than one breadcrumb should be displayed when given as input", () => {
+  test("More than one clickable breadcrumb should be displayed when given as input", () => {
     const previousBreadcrumbFunction = jest.fn();
     const navigatedBreadcrumbFunction = jest.fn();
     const pageBreadcrumbFunction = jest.fn();
@@ -74,7 +74,7 @@ describe("Breadcrumbs tests", () => {
       expect(totalBreadcrumbs[i].children[0].textContent).toEqual(
         breadcrumbs[i].title
       );
-      //userEvent.click(totalBreadcrumbs[i].children[0]);
+      userEvent.click(totalBreadcrumbs[i].children[0]);
     }
     expect(totalBreadcrumbs[i].textContent).toEqual(breadcrumbs[i].title);
     expect(previousBreadcrumbFunction).toHaveBeenCalledTimes(1);
