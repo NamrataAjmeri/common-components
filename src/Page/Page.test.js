@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import Page from "./Page";
+import userEvent from "@testing-library/user-event";
 
 describe("Page tests", () => {
   test("Page content should be rendered alongwith breadcrumbs", () => {
@@ -99,5 +100,28 @@ describe("Page tests", () => {
       "Page Content Test"
     );
     expect(queryByRole("progressbar")).toBeFalsy();
+  });
+
+  test("Page content should be rendered with left arrow", () => {
+    const onClick = jest.fn();
+    const title = "Title test";
+    const pageContent = "Page Content Test";
+
+    const { queryAllByRole, getByLabelText, getByRole } = render(
+      <Page title={title} onClick={onClick}>
+        <div className="content" aria-label="page-content-test">
+          {pageContent}
+        </div>
+      </Page>
+    );
+
+    const leftArrowButtpon = getByRole("button");
+    userEvent.click(leftArrowButtpon);
+
+    expect(onClick).toHaveBeenCalledTimes(1);
+    expect(queryAllByRole("breadcrumbs")).toEqual([]);
+    expect(getByLabelText("page-content-test").textContent).toEqual(
+      "Page Content Test"
+    );
   });
 });
