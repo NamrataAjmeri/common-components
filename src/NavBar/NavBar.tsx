@@ -56,6 +56,7 @@ const NavBar = ({
         >
           <img
             className="validereIcon"
+            aria-label="validere-icon-image"
             src="https://validere.com/wp-content/uploads/logo_validere_full.png"
             alt="Validere Icon"
           />

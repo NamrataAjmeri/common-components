@@ -1,17 +1,78 @@
 import React from "react";
-import Enzyme, { mount } from "enzyme";
-import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
+import { render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import NavBar from "./NavBar";
-import { getFirstChar } from "./NavBarHelper";
 
-Enzyme.configure({
-  adapter: new Adapter(),
-});
+describe(" Navbar tests ", () => {
+  test(" Should render Navbar with application links and profile button should be clicked", () => {
+    const activeApplication = "dashboard";
+    const permissions = {
+      "dashboard:core": ["read"],
+      "operations:core": ["read"],
+      "commercial:core": ["read"],
+      "esg:core": ["read"],
+    };
+    const name = "Validere";
+    const onSignOut = jest.fn();
+    const className = "ClassNameTest";
+    const style = { background: "red" };
+    const version = "version test";
 
-const URL = "https://validere.com";
+    const { getByRole } = render(
+      <NavBar
+        activeApplication={activeApplication}
+        permissions={permissions}
+        name={name}
+        onSignOut={onSignOut}
+        className={className}
+        style={style}
+        version={version}
+        url="https://validere.com"
+      />
+    );
+    const profileIconButton = getByRole("button");
 
-describe("Page", () => {
-  it("should render", () => {
+    const validereImage = getByRole("img", {
+      name: /validere-icon-image/i,
+    });
+
+    const operationLink = getByRole("link", {
+      name: /Operations/i,
+    });
+
+    const dashboardLink = getByRole("link", {
+      name: /Dashboard/i,
+    });
+
+    const commercialLink = getByRole("link", {
+      name: /Commercial/i,
+    });
+
+    const esgLink = getByRole("link", {
+      name: /ESG/i,
+    });
+
+    userEvent.click(profileIconButton);
+
+    expect(validereImage.getAttribute("src")).toEqual(
+      "https://validere.com/wp-content/uploads/logo_validere_full.png"
+    );
+
+    expect(dashboardLink.getAttribute("href")).toEqual(
+      "https://validere.com/app/dashboard"
+    );
+    expect(commercialLink.getAttribute("href")).toEqual(
+      "https://validere.com/app/commercial"
+    );
+    expect(operationLink.getAttribute("href")).toEqual(
+      "https://validere.com/app/operations"
+    );
+    expect(esgLink.getAttribute("href")).toEqual(
+      "https://validere.com/app/esg"
+    );
+  });
+
+  test(" Should render Navbar and sigout label should dissappear when clicked at random place  ", () => {
     const activeApplication = "dashboard";
     const permissions = {
       "dashboard:core": ["read"],
@@ -25,7 +86,7 @@ describe("Page", () => {
     const style = { background: "red" };
     const version = "a version";
 
-    const wrapper = mount(
+    const { container, getByRole } = render(
       <NavBar
         activeApplication={activeApplication}
         permissions={permissions}
@@ -34,49 +95,100 @@ describe("Page", () => {
         className={className}
         style={style}
         version={version}
-        url={URL}
+        url="https://validere.com"
       />
     );
 
-    // uses style and className props
-    expect(wrapper.find(".commonNavbar").hasClass(className)).toEqual(true);
-    expect(wrapper.find(".commonNavbar").prop("style")).toEqual(style);
-
-    // uses first char of profile name in profile icon
-    expect(wrapper.find(".profileIcon").text()).toEqual(getFirstChar(name));
-
-    // active application is Dashboard
-    expect(wrapper.find(".activeSelection").text()).toEqual("Dashboard");
-
-    // given the permissions, all 4 links should be visible
-    expect(
-      wrapper.find("li").map((reactwrapper) => reactwrapper.text())
-    ).toEqual(["Dashboard", "Operations", "Commercial", "ESG"]);
-
-    wrapper.find(".profileIcon").simulate("click");
-
-    // clicking profile button opens a popover where the disabled menu item shows the version
-    expect(wrapper.find(".menuItem--disabled").text()).toEqual(
-      expect.stringContaining(version)
-    );
-
-    // clicking the signout option (first option) will call the onSignOut function
-    wrapper.find(".menuItem").at(0).simulate("click");
-    expect(onSignOut).toHaveBeenCalled();
+    const profileIconButton = getByRole("button");
+    userEvent.click(profileIconButton);
+    userEvent.click(container);
   });
 
-  it("should not render any links if it does not have permissions", () => {
+  test("Active application is not dashboard ", () => {
+    const activeApplication = "operations";
+    const permissions = {
+      "dashboard:core": ["read"],
+      "operations:core": ["read"],
+      "commercial:core": ["read"],
+      "esg:core": ["read"],
+    };
+    const name = "Validere";
+    const onSignOut = jest.fn();
+    const style = { background: "red" };
+    const version = "a version";
+
+    const { container, getByRole } = render(
+      <NavBar
+        activeApplication={activeApplication}
+        permissions={permissions}
+        name={name}
+        onSignOut={onSignOut}
+        style={style}
+        version={version}
+        url="https://validere.com"
+      />
+    );
+
+    const profileIconButton = getByRole("button");
+    userEvent.click(profileIconButton);
+    userEvent.click(container);
+  });
+
+  test("Should not render Dashboard, Operation and ESG link if user does not have read permission", () => {
+    const activeApplication = "dashboard";
     const permissions = {
       "dashboard:core": [],
       "operations:core": [],
       "commercial:core": [],
       "esg:core": [],
     };
+    const name = "Validere";
+    const onSignOut = jest.fn();
+    const className = "aClassName";
+    const style = { background: "red" };
+    const version = "a version";
 
-    const wrapper = mount(<NavBar permissions={permissions} url={URL} />);
+    const { queryByRole, getByRole } = render(
+      <NavBar
+        activeApplication={activeApplication}
+        permissions={permissions}
+        name={name}
+        onSignOut={onSignOut}
+        className={className}
+        style={style}
+        version={version}
+        url="https://validere.com"
+      />
+    );
 
-    expect(
-      wrapper.find("li").map((reactwrapper) => reactwrapper.text())
-    ).toEqual([]);
+    const validereImage = getByRole("img", {
+      name: /validere-icon-image/i,
+    });
+    expect(validereImage.getAttribute("src")).toEqual(
+      "https://validere.com/wp-content/uploads/logo_validere_full.png"
+    );
+    const operationLink = queryByRole("link", {
+      name: /Operations/i,
+    });
+
+    const dashboardLink = queryByRole("link", {
+      name: /Dashboard/i,
+    });
+
+    const commercialLink = queryByRole("link", {
+      name: /Commercial/i,
+    });
+
+    const esgLink = queryByRole("link", {
+      name: /ESG/i,
+    });
+
+    expect(operationLink).toBeFalsy();
+    expect(dashboardLink).toBeFalsy();
+    expect(commercialLink).toBeFalsy();
+    expect(esgLink).toBeFalsy();
+
+    const profileIconButton = queryByRole("button");
+    userEvent.click(profileIconButton);
   });
 });
