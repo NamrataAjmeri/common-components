@@ -20,6 +20,7 @@ $tabContainerPadding: 8px 20px 8px 10px;
   > * + * {
     margin-top: $tabMarginSize;
   }
+  left:0;
 }
 
 .tabsWrapper {
@@ -128,8 +129,9 @@ $tabContainerPadding: 8px 20px 8px 10px;
 .backIcon {
   font-size: 22px;
   width: 24px;
-  margin-left: 2px;
+  margin-left: 1px;
   margin-right: 12px;
+  padding: 0;
 }
 
 .collapseContainer {
@@ -250,4 +252,8 @@ $tabContainerPadding: 8px 20px 8px 10px;
   font-size: 26px;
   text-align: right;
   margin-left: auto;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0;
 }
