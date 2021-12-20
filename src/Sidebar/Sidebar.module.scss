@@ -62,6 +62,7 @@ $tabContainerPadding: 8px 20px 8px 10px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  border: none;
   @include fontStyles(body, $textFontSize);
 
   &--active {

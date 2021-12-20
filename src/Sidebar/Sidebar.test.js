@@ -58,12 +58,6 @@ describe("Sidebar tests", () => {
     },
   ];
   test("Should render Slidebar ", () => {
-    const scheduledTaskLink = jest.fn();
-    const manageWorkflowLink = jest.fn();
-    const instrumentsListLink = jest.fn();
-    const manageInstrumentsLink = jest.fn();
-    const manageTestsLink = jest.fn();
-
     const activeTab = "manage_workflows";
     const name = "Validere";
     const style = { background: "red" };
@@ -98,12 +92,6 @@ describe("Sidebar tests", () => {
   });
 
   test(" Should render sidebar features even though sidebar not pinned ", () => {
-    const scheduledTaskLink = jest.fn();
-    const manageWorkflowLink = jest.fn();
-    const instrumentsListLink = jest.fn();
-    const manageInstrumentsLink = jest.fn();
-    const manageTestsLink = jest.fn();
-
     const activeTab = "manage_workflows";
     const name = "Validere";
     const className = "aClassName";
