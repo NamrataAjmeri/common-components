@@ -8,7 +8,7 @@ describe("Sidebar tab tests", () => {
     const activeTab = "manage_workflows";
     const setOpenListTab = jest.fn();
     const sampleLink = jest.fn();
-    const tabDetail = {
+    const sampleTabDetail = {
       id: "samples",
       title: "Samples",
       icon: "code-fork",
@@ -17,7 +17,7 @@ describe("Sidebar tab tests", () => {
 
     const { getByRole } = render(
       <SidebarTabs
-        tabDetails={tabDetail}
+        tabDetails={sampleTabDetail}
         activeTab={activeTab}
         openListTab={activeTab}
         setOpenListTab={setOpenListTab}
