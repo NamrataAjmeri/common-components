@@ -57,7 +57,7 @@ describe("Sidebar tests", () => {
       link: sampleLink,
     },
   ];
-  test("Should render Slidebar ", () => {
+  test("Should render Sidebar ", () => {
     const activeTab = "manage_workflows";
     const name = "Validere";
     const style = { background: "red" };
