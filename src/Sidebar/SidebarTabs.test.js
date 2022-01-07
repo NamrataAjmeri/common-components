@@ -4,7 +4,7 @@ import SidebarTabs from "./SidebarTabs";
 import userEvent from "@testing-library/user-event";
 
 describe("Sidebar tab tests", () => {
-  test("Should render SidebarTab ", () => {
+  test("Should render SidebarTab", () => {
     const activeTab = "manage_workflows";
     const setOpenListTab = jest.fn();
     const sampleLink = jest.fn();
@@ -32,7 +32,7 @@ describe("Sidebar tab tests", () => {
     expect(sampleLink).toHaveBeenCalledTimes(1);
   });
 
-  test("Should click dropdown on Sidebar ", () => {
+  test("Should click dropdown on Sidebar", () => {
     const scheduledTaskLink = jest.fn();
     const manageWorkflowLink = jest.fn();
 
