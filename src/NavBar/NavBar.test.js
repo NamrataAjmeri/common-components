@@ -3,8 +3,8 @@ import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import NavBar from "./NavBar";
 
-describe(" Navbar tests ", () => {
-  test(" Should render Navbar with application links and profile button should be clicked", () => {
+describe("Navbar tests", () => {
+  test("Should render Navbar with application links and profile button should be clicked", () => {
     const activeApplication = "dashboard";
     const permissions = {
       "dashboard:core": ["read"],
@@ -72,7 +72,7 @@ describe(" Navbar tests ", () => {
     );
   });
 
-  test(" Should render Navbar and sigout label should dissappear when clicked at random place  ", () => {
+  test("Should render Navbar and sigout label should dissappear when clicked at random place", () => {
     const activeApplication = "dashboard";
     const permissions = {
       "dashboard:core": ["read"],
@@ -104,7 +104,7 @@ describe(" Navbar tests ", () => {
     userEvent.click(container);
   });
 
-  test("Active application is not dashboard ", () => {
+  test("Active application is not dashboard", () => {
     const activeApplication = "operations";
     const permissions = {
       "dashboard:core": ["read"],
