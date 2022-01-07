@@ -3,8 +3,8 @@ import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import ProfilePopover from "./ProfilePopover";
 
-describe(" ProfilePopover tests ", () => {
-  test(" Should render ProfilePopover", () => {
+describe("ProfilePopover tests", () => {
+  test("Should render ProfilePopover", () => {
     const name = "Validere";
     const onSignOut = jest.fn();
     const onProfileClick = jest.fn();
