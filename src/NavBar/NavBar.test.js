@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import NavBar from "./NavBar";
 
 describe("Navbar tests", () => {
-  test("Should render Navbar with application links and profile button should be clicked", () => {
+  test("Should render Navbar with Dashboard, Operations, ESG links", () => {
     const activeApplication = "dashboard";
     const permissions = {
       "dashboard:core": ["read"],
@@ -30,8 +30,6 @@ describe("Navbar tests", () => {
         url="https://validere.com"
       />
     );
-    const profileIconButton = getByRole("button");
-
     const validereImage = getByRole("img", {
       name: /validere-icon-image/i,
     });
@@ -52,8 +50,6 @@ describe("Navbar tests", () => {
       name: /ESG/i,
     });
 
-    userEvent.click(profileIconButton);
-
     expect(validereImage.getAttribute("src")).toEqual(
       "https://validere.com/wp-content/uploads/logo_validere_full.png"
     );
@@ -72,7 +68,7 @@ describe("Navbar tests", () => {
     );
   });
 
-  test("Should render Navbar and sigout label should dissappear when clicked at random place", () => {
+  test("Should show Sign out button when logo button gets clicked and should disappear when clicked out of the logo Icon", () => {
     const activeApplication = "dashboard";
     const permissions = {
       "dashboard:core": ["read"],
@@ -82,11 +78,11 @@ describe("Navbar tests", () => {
     };
     const name = "Validere";
     const onSignOut = jest.fn();
-    const className = "aClassName";
+    const className = "ClassNameTest";
     const style = { background: "red" };
-    const version = "a version";
+    const version = "version test";
 
-    const { container, getByRole } = render(
+    const { getByRole, getAllByRole, queryAllByRole, container } = render(
       <NavBar
         activeApplication={activeApplication}
         permissions={permissions}
@@ -98,10 +94,18 @@ describe("Navbar tests", () => {
         url="https://validere.com"
       />
     );
+    const validereLogoButton = getByRole("button");
 
-    const profileIconButton = getByRole("button");
-    userEvent.click(profileIconButton);
+    expect(queryAllByRole("menuItem")[0]).toBeFalsy();
+
+    userEvent.click(validereLogoButton);
+
+    const menuItems = getAllByRole("menuItem");
+
+    expect(menuItems[0].textContent).toMatch("Sign Out");
+
     userEvent.click(container);
+    expect(queryAllByRole("menuItem")[0]).toBeFalsy();
   });
 
   test("Active application is not dashboard", () => {
@@ -128,10 +132,10 @@ describe("Navbar tests", () => {
         url="https://validere.com"
       />
     );
-
-    const profileIconButton = getByRole("button");
-    userEvent.click(profileIconButton);
-    userEvent.click(container);
+    const dashboardLink = getByRole("link", {
+      name: /Dashboard/i,
+    });
+    expect(dashboardLink.getAttribute("aria-selected")).toEqual("false");
   });
 
   test("Should not render Dashboard, Operation and ESG link if user does not have read permission", () => {
@@ -187,8 +191,5 @@ describe("Navbar tests", () => {
     expect(dashboardLink).toBeFalsy();
     expect(commercialLink).toBeFalsy();
     expect(esgLink).toBeFalsy();
-
-    const profileIconButton = queryByRole("button");
-    userEvent.click(profileIconButton);
   });
 });

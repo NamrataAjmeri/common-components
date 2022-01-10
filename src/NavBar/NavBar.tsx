@@ -77,7 +77,14 @@ const NavBar = ({
                   activeApplication === link.id ? "activeSelection" : ""
                 }
               >
-                <a href={`${url}${link.link}`}>{link.name}</a>
+                <a
+                  aria-selected={
+                    activeApplication === link.id ? "true" : "false"
+                  }
+                  href={`${url}${link.link}`}
+                >
+                  {link.name}
+                </a>
                 {activeApplication === link.id && (
                   <div className="activeSelectionLine"></div>
                 )}
