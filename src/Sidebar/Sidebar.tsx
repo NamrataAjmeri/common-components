@@ -110,7 +110,7 @@ const Sidebar = ({
           <div className={cx("pinContainer")} onClick={onPinClick}>
             <div className={cx("tabText")}>
               <FontAwesome
-                className={cx("slideBarCollapseIcon", "fa-fw")}
+                className={cx("sideBarCollapseIcon", "fa-fw")}
                 name={
                   isPinned
                     ? "far fa-angle-double-left"

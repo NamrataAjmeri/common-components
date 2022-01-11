@@ -204,11 +204,11 @@ $tabContainerPadding: 8px 20px 8px 10px;
   margin-left: auto;
 }
 
-.slideBarCollapseIcon {
+.sideBarCollapseIcon {
   font-size: 19px;
   margin-right: 12px;
   color: var(--colour-white);
-  border: 1px solid #fff;
+  border: 1px solid var(--colour-white);
   border-radius: 5px;
   cursor: pointer
 }
