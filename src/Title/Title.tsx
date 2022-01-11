@@ -42,9 +42,9 @@ const Title = ({ style, className, type = "header", children }: TitleType) => {
   const fontStyle = getFontStyle(type);
 
   return (
-    <div style={{ ...fontStyle, ...style }} className={className}>
+    <span style={{ ...fontStyle, ...style }} className={className}>
       {children}
-    </div>
+    </span>
   );
 };
 

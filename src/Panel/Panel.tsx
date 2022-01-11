@@ -3,6 +3,7 @@ import ReactLoader from "../Loader/ReactLoader";
 import Title from "../Title/Title";
 import "./Panel.css";
 import PanelType from "../types/Panel";
+import FontAwesome from "react-fontawesome";
 
 const Panel = ({
   className = "",
@@ -11,6 +12,7 @@ const Panel = ({
   loaded,
   onClick,
   children,
+  iconName,
 }: PanelType) => {
   const isClickable = onClick && (loaded === undefined || loaded);
 
@@ -22,6 +24,7 @@ const Panel = ({
       style={style}
       onClick={isClickable ? onClick : () => null}
     >
+      {iconName && <FontAwesome className={`customIcon`} name={iconName} />}
       {title && (
         <Title type="panelheader" className="commonPanel__title">
           {title}
@@ -29,11 +32,13 @@ const Panel = ({
       )}
 
       {loaded !== undefined ? (
-        <ReactLoader loaded={loaded} position={50}>
-          {children}
-        </ReactLoader>
+        <div>
+          <ReactLoader loaded={loaded} position={50}>
+            {children}
+          </ReactLoader>
+        </div>
       ) : (
-        children
+        <div>{children}</div>
       )}
     </div>
   );

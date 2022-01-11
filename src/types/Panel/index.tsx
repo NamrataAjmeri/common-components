@@ -13,6 +13,8 @@ type PanelType = {
   loaded?: boolean;
   /** If present, executes the given function when the panel is clicked */
   onClick?: React.MouseEventHandler<HTMLDivElement>;
+
+  iconName?: string;
 };
 
 export default PanelType;

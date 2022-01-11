@@ -16,3 +16,11 @@
 .commonPanel__clickable {
   cursor: pointer;
 }
+
+.customIcon {
+  font-size: 18px;
+  width: 11px;
+  margin-left: 0px;
+  margin-right: 12px;
+  margin-bottom: 15px;
+}
