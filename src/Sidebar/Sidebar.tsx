@@ -108,14 +108,19 @@ const Sidebar = ({
       <div className={cx("footer")}>
         {onPinClick && (
           <div className={cx("pinContainer")} onClick={onPinClick}>
-            <SidebarTabText isVisible={isSidebarExpanded}>
-              Lock Sidebar
-            </SidebarTabText>
-
-            <FontAwesome
-              className={cx("pinIcon")}
-              name={isPinned ? "toggle-on" : "toggle-off"}
-            />
+            <div className={cx("tabText")}>
+              <FontAwesome
+                className={cx("slideBarCollapseIcon", "fa-fw")}
+                name={
+                  isPinned
+                    ? "far fa-angle-double-right"
+                    : "far fa-angle-double-left"
+                }
+              />
+              <SidebarTabText isVisible={isSidebarExpanded}>
+                Collapse Sidebar
+              </SidebarTabText>
+            </div>
           </div>
         )}
 
