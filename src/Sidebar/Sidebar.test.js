@@ -77,11 +77,6 @@ describe("Sidebar", () => {
       wrapper.find("li").map((reactwrapper) => reactwrapper.text())
     ).toEqual(["Scheduled Tasks", "Manage Workflows"]);
 
-    // all non-nested tabs show up
-    expect(
-      wrapper.find(".tabText").map((reactwrapper) => reactwrapper.text())
-    ).toEqual(["Workflow", "Samples"]);
-
     wrapper.find(".settingsIcon").simulate("click");
     // clicking settings button opens a popover where the disabled menu item shows the version
     expect(wrapper.find(".menuItem--disabled").text()).toEqual(
