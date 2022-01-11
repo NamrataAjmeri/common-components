@@ -113,8 +113,8 @@ const Sidebar = ({
                 className={cx("slideBarCollapseIcon", "fa-fw")}
                 name={
                   isPinned
-                    ? "far fa-angle-double-right"
-                    : "far fa-angle-double-left"
+                    ? "far fa-angle-double-left"
+                    : "far fa-angle-double-right"
                 }
               />
               <SidebarTabText isVisible={isSidebarExpanded}>
