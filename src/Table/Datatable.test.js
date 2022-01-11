@@ -229,7 +229,6 @@ describe("Datatable", () => {
         (checkbox) => checkbox.prop("checked") === false
       )
     ).toEqual(true);
-
     // Click the second checkbox, onCheckboxClick is called with data[1]
     // and checks the checkbox
     updatedCheckboxCells[1].simulate("change");
