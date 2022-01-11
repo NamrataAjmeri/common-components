@@ -57,7 +57,7 @@ describe("Sidebar tests", () => {
       link: sampleLink,
     },
   ];
-  test("Should render Sidebar ", () => {
+  test("Should render Sidebar", () => {
     const activeTab = "manage_workflows";
     const name = "Validere";
     const style = { background: "red" };
@@ -68,7 +68,7 @@ describe("Sidebar tests", () => {
     const onProfileClick = jest.fn();
     const onBackClick = jest.fn();
 
-    const { container, getByRole } = render(
+    const { container, getByRole, getAllByRole, queryAllByRole } = render(
       <Sidebar
         activeTab={activeTab}
         tabs={tabs}
@@ -86,12 +86,27 @@ describe("Sidebar tests", () => {
     const backToHubsButton = getByRole("button", { name: /backtohub/i });
     const settingButton = getByRole("button", { name: /settings/i });
     userEvent.click(backToHubsButton);
+
+    expect(queryAllByRole("menuItem")[0]).toBeFalsy();
+    expect(queryAllByRole("menuItem")[1]).toBeFalsy();
+
     userEvent.click(settingButton);
+
+    const menuItems = getAllByRole("menuItem");
+    const viewProfileItem = menuItems[0];
+    const signoutItem = menuItems[1];
+
+    expect(viewProfileItem).toBeTruthy();
+    expect(signoutItem).toBeTruthy();
+
     userEvent.click(container);
+
+    expect(queryAllByRole("menuItem")[0]).toBeFalsy();
+    expect(queryAllByRole("menuItem")[1]).toBeFalsy();
     expect(onBackClick).toHaveBeenCalledTimes(1);
   });
 
-  test(" Should render sidebar features even though sidebar not pinned ", () => {
+  test("Should render sidebar features even though sidebar not pinned", () => {
     const activeTab = "manage_workflows";
     const name = "Validere";
     const className = "aClassName";
@@ -125,5 +140,45 @@ describe("Sidebar tests", () => {
     expect(tabTitles[3].textContent).toEqual("Instruments");
     expect(tabTitles[4].textContent).toEqual("Samples");
     expect(tabTitles[5].textContent).toEqual("Lock Sidebar");
+  });
+
+  test("Should expand and collapse dropdown ", () => {
+    const activeTab = "manage_workflows";
+    const name = "Validere";
+    const className = "aClassName";
+    const style = { background: "red" };
+    const version = "a version";
+    const onSignOut = jest.fn();
+    const onPinClick = jest.fn();
+    const onProfileClick = jest.fn();
+    const onBackClick = jest.fn();
+
+    const { getAllByRole, container } = render(
+      <Sidebar
+        activeTab={activeTab}
+        tabs={tabs}
+        name={name}
+        onSignOut={onSignOut}
+        className={className}
+        style={style}
+        onPinClick={onPinClick}
+        version={version}
+        onProfileClick={onProfileClick}
+        onBackClick={onBackClick}
+        homeTabText="Operations"
+      />
+    );
+
+    userEvent.click(getAllByRole("listdropdown")[1]);
+
+    expect(getAllByRole("listdropdown")[1].firstChild.className).toMatch(
+      /fa fa-angle-up/i
+    );
+
+    userEvent.click(getAllByRole("listdropdown")[1]);
+
+    expect(getAllByRole("listdropdown")[1].firstChild.className).toMatch(
+      /fa fa-angle-down/i
+    );
   });
 });

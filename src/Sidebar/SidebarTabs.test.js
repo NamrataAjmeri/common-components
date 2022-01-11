@@ -32,48 +32,52 @@ describe("Sidebar tab tests", () => {
     expect(sampleLink).toHaveBeenCalledTimes(1);
   });
 
-  test("Should click dropdown on Sidebar", () => {
-    const scheduledTaskLink = jest.fn();
-    const manageWorkflowLink = jest.fn();
+  test("Should click links that appears in dropdown list", () => {
+    const manageTestsLink = jest.fn();
+    const manageInstrumentsLink = jest.fn();
+    const instrumentsListLink = jest.fn();
 
     const activeTab = "manage_workflows";
-    const setOpenListTab = jest.fn();
+    const setOpenListTabMock = jest.fn();
 
     const tabDetail = {
-      id: "workflow",
-      title: "Workflow",
-      icon: "calendar",
+      id: "field_lab",
+      title: "Instruments",
+      icon: "cubes",
       nested: [
         {
-          id: "scheduled_task",
-          title: "Scheduled Tasks",
-          link: scheduledTaskLink,
+          id: "field_labs",
+          title: "Instruments List",
+          link: instrumentsListLink,
         },
         {
-          id: "manage_workflows",
-          title: "Manage Workflows",
-          link: manageWorkflowLink,
+          id: "instruments_manage",
+          title: "Manage Instruments",
+          link: manageInstrumentsLink,
+        },
+        {
+          id: "tests_manage",
+          title: "Manage Tests",
+          link: manageTestsLink,
         },
       ],
     };
 
-    const { getByRole, container } = render(
+    const { getByRole } = render(
       <SidebarTabs
         tabDetails={tabDetail}
         activeTab={activeTab}
         openListTab={activeTab}
-        setOpenListTab={setOpenListTab}
+        setOpenListTab={setOpenListTabMock}
         isSidebarExpanded={true}
       />
     );
 
     const tasks = getByRole("list");
-    const dropdownlist = getByRole("listdropdown");
     const scheduledTask = tasks.children[0];
-
-    userEvent.click(dropdownlist);
+    userEvent.click(getByRole("listdropdown"));
     userEvent.click(scheduledTask);
 
-    expect(scheduledTaskLink).toHaveBeenCalledTimes(1);
+    expect(instrumentsListLink).toHaveBeenCalledTimes(1);
   });
 });
