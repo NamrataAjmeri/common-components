@@ -33,7 +33,7 @@ describe("Title", () => {
 
     const wrapper = mount(<Title type="subheader">{headerText}</Title>);
 
-    const title = wrapper.find("div");
+    const title = wrapper.find("span");
 
     // enforces subheader style
     expect(title.prop("style")).toEqual(
