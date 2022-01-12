@@ -186,18 +186,6 @@ $tabContainerPadding: 8px 20px 8px 10px;
   align-items: center;
   white-space: nowrap;
   @include fontStyles(body, $textFontSize);
-
-  &--back {
-    background-color: var(--colour-primary-700);
-    color: var(--colour-white);
-    display: flex;
-    align-items: center;
-    text-transform: capitalize;
-
-    &--collapse {
-      background-color: transparent;
-    }
-  }
 }
 
 .collapseLockSidebar {
