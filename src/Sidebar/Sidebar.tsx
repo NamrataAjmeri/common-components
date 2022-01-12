@@ -119,7 +119,7 @@ const Sidebar = ({
                 }
               />
               <SidebarTabText isVisible={isSidebarExpanded}>
-                Collapse Sidebar
+                {isPinned ? "Collapse Sidebar" : "Lock Sidebar"}
               </SidebarTabText>
             </div>
           </div>
