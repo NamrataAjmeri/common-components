@@ -24,21 +24,20 @@ const Panel = ({
       style={style}
       onClick={isClickable ? onClick : () => null}
     >
-      {iconName && <FontAwesome className={`customIcon`} name={iconName} />}
-      {title && (
-        <Title type="panelheader" className="commonPanel__title">
-          {title}
-        </Title>
-      )}
-
+      <div className={`commonPanel__titleContainer`}>
+        {iconName && <FontAwesome className={`customIcon`} name={iconName} />}
+        {title && (
+          <Title type="panelheader" className="commonPanel__title">
+            {title}
+          </Title>
+        )}
+      </div>
       {loaded !== undefined ? (
-        <div>
-          <ReactLoader loaded={loaded} position={50}>
-            {children}
-          </ReactLoader>
-        </div>
+        <ReactLoader loaded={loaded} position={50}>
+          {children}
+        </ReactLoader>
       ) : (
-        <div>{children}</div>
+        children
       )}
     </div>
   );
