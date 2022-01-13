@@ -1,10 +1,12 @@
 import React from "react";
 import ReactLoader from "../Loader/ReactLoader";
 import Title from "../Title/Title";
-import "./Panel.css";
+import styles from "./Panel.module.scss";
 import PanelType from "../types/Panel";
 import FontAwesome from "react-fontawesome";
+import classNames from "classnames/bind";
 
+const cx = classNames.bind(styles);
 const Panel = ({
   className = "",
   style,
@@ -18,16 +20,22 @@ const Panel = ({
 
   return (
     <div
-      className={`commonPanel ${
-        isClickable ? "commonPanel__clickable" : ""
-      } ${className}`}
+      className={cx(
+        "commonPanel",
+        {
+          commonPanel__clickable: isClickable,
+        },
+        `${className}`
+      )}
       style={style}
       onClick={isClickable ? onClick : () => null}
     >
-      <div className={`commonPanel__titleContainer`}>
-        {iconName && <FontAwesome className={`customIcon`} name={iconName} />}
+      <div className={cx("commonPanel__titleContainer")}>
+        {iconName && (
+          <FontAwesome className={cx("commonPanel__icon")} name={iconName} />
+        )}
         {title && (
-          <Title type="panelheader" className="commonPanel__title">
+          <Title type="panelheader" className={cx("commonPanel__title")}>
             {title}
           </Title>
         )}
