@@ -8,24 +8,26 @@
   padding: 15px 20px;
   position: relative;
 
-  & &__titleContainer {
+  .titleContainer {
     display: flex;
     flex-direction: row;
  }
 
-  & &__title {
-  margin-bottom: 15px;
- }
+  .title {
+      margin-bottom: 15px;
+  }
 
- & &__icon {
-  font-size: 18px;
-  width: 11px;
-  margin-top: 5px;
-  margin-left: 0px;
-  margin-right: 12px;
- }
+  .icon {
+    font-size: 18px;
+    width: 11px;
+    margin-top: 5px;
+    margin-left: 0px;
+    margin-right: 12px;
+  }
 }
 
-.commonPanel__clickable {
+.clickable {
   cursor: pointer;
 }
+
+

@@ -20,22 +20,16 @@ const Panel = ({
 
   return (
     <div
-      className={cx(
-        "commonPanel",
-        {
-          commonPanel__clickable: isClickable,
-        },
-        `${className}`
-      )}
+      className={`${className} ${cx("commonPanel", {
+        clickable: isClickable,
+      })}`}
       style={style}
       onClick={isClickable ? onClick : () => null}
     >
-      <div className={cx("commonPanel__titleContainer")}>
-        {iconName && (
-          <FontAwesome className={cx("commonPanel__icon")} name={iconName} />
-        )}
+      <div className={cx("titleContainer")}>
+        {iconName && <FontAwesome className={cx("icon")} name={iconName} />}
         {title && (
-          <Title type="panelheader" className={cx("commonPanel__title")}>
+          <Title type="panelheader" className={cx("title")}>
             {title}
           </Title>
         )}
