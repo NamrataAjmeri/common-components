@@ -1,0 +1,100 @@
+.tooltip {
+    background-color: white;
+    border-radius: 6px;
+    padding: 5px 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    font-style: normal;
+    font-weight: normal;
+    
+    .titleContainer {
+        display: flex;
+        flex-direction: row;
+
+        .title {
+            flex-grow: 1;
+            color: #1A948F;
+            text-align: left;
+            font-size: 18px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+    .body {
+        justify-content: center;
+        align-items: center;
+        letter-spacing: 0.01em;
+        display: flex;       
+        font-size: 14px;
+        line-height: 22px;
+    }
+  }
+
+.container {
+    display: inline-block;
+  }
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    //align-items: center; 
+}
+.triggerButtton1 {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left:50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.triggerButton {
+    height: 40px;
+}
+
+.icon {
+  margin-right: 8px;
+  font-size: 19px;
+  display: inline-block;
+}
+.closeButton {
+    color: #1A948F;
+    margin-left: auto;
+    margin-right: 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    background: none;
+    overflow: revert;
+  }
+.closeButton2 {
+  //color: var(--colour-black);
+  margin-left: auto;
+  font: normal;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  padding: 0px;
+}
+
+  .closeButton1 {
+    //color: var(--colour-black);
+    margin-left: auto;
+    cursor: pointer;
+    font-size: 19px;
+    border: none;
+    background-color: transparent;
+    padding: 0px;
+  
+    &:hover {
+      background-color: transparent;
+    }
+    &:focus,
+    &:active {
+      background-color: transparent;
+    }
+}
