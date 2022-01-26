@@ -1,10 +1,11 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 export type PositionType = "top" | "right" | "bottom" | "left";
 export type triggerType = "hover" | "click";
+export type alignType = "start" | "end" | "center";
 
 type TooltipType = {
-  /** The inline style object applied to the containing div */
+  /** A boolean to force the tooltip to become visible*/
   show: boolean;
   /** The possible values are top, right, bottom and left. */
   position: PositionType[];
@@ -13,15 +14,15 @@ type TooltipType = {
   /** The heading of the tooltip. */
   title: string;
   /** The content of the tooltip. */
-  content: string;
+  content: ReactNode;
   /** The width of the tooltip. */
   width: number;
   /** Background theme of the tooltip. */
   isWhiteTheme: boolean;
-  /** true when tooptip is to be displayed after some user action. false when tooltip is to be displayed by hovering*/
-  manual: boolean;
   /** Tooltip gets displayed based on the trigger type */
   trigger: triggerType;
+  // Align tooltip with respect to the target
+  align: alignType;
   /** Element/Entity around which tooltip has to be displayed */
   children: React.ReactNode | React.ReactNode[];
 };

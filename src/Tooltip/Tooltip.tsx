@@ -1,10 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classNames from "classnames/bind";
 import { Popover, ArrowContainer } from "react-tiny-popover";
 import styles from "./Tooltip.module.scss";
 import FontAwesome from "react-fontawesome";
 import TooltipType, { triggerType } from "../types/Tooltip";
 import colors from "../constants/index";
+import { Title } from "..";
 
 const cx = classNames.bind(styles);
 const Tooltip = ({
@@ -16,13 +17,17 @@ const Tooltip = ({
   width = 350,
   isWhiteTheme = false,
   trigger = "hover",
+  align = "end",
   children,
 }: TooltipType) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(show);
-  const clickMeButtonRef = useRef(null);
+
+  useEffect(() => {
+    setIsPopoverOpen(show);
+  }, [show]);
 
   const togglePopover = (togglePopover: boolean, trigger: triggerType) => {
-    if (`${trigger}` == "hover") {
+    if (trigger === "hover" && show === false) {
       setIsPopoverOpen(togglePopover);
     }
   };
@@ -31,7 +36,7 @@ const Tooltip = ({
     togglePopover: boolean,
     trigger: triggerType
   ) => {
-    if (`${trigger}` == "click") {
+    if (trigger === "click") {
       setIsPopoverOpen(togglePopover);
     }
   };
@@ -53,13 +58,11 @@ const Tooltip = ({
     <Popover
       isOpen={isPopoverOpen}
       positions={position}
-      align="end"
+      align={align}
       padding={10}
-      reposition={false}
       onClickOutside={() => setIsPopoverOpen(false)}
-      ref={clickMeButtonRef} // if you'd like a ref to your popover's child, you can grab one here
       content={({ position, childRect, popoverRect }) => (
-        <ArrowContainer // if you'd like an arrow, you can import the ArrowContainer!
+        <ArrowContainer
           position={position}
           childRect={childRect}
           popoverRect={popoverRect}
