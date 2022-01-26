@@ -41,19 +41,6 @@ const Tooltip = ({
     }
   };
 
-  const customStyle = isWhiteTheme
-    ? {
-        backgroundColor: colors.background.white,
-        color: colors.text["800"],
-        width: `${width}` + "px",
-        boxShadow: "0 1px 4px rgba(0, 0, 0, 0.3)",
-      }
-    : {
-        backgroundColor: colors.surface.light,
-        color: colors.background.white,
-        width: `${width}` + "px",
-      };
-
   return (
     <Popover
       isOpen={isPopoverOpen}
@@ -72,15 +59,14 @@ const Tooltip = ({
           className="popover-arrow-container"
           arrowClassName="popover-arrow"
         >
-          <div style={customStyle} className={cx("tooltip")} role="tooltip">
+          <div
+            style={{ width }}
+            className={cx("tooltip", isWhiteTheme ? "tooltip--white" : null)}
+            role="tooltip"
+          >
             <div className={cx("titleContainer")}>
               <div
-                style={
-                  isWhiteTheme
-                    ? { color: colors.primary["600"] }
-                    : { color: colors.background.white }
-                }
-                className={cx("title")}
+                className={cx("title", isWhiteTheme ? "title--white" : null)}
                 role="title"
               >
                 {title}
@@ -89,12 +75,10 @@ const Tooltip = ({
                 <div>
                   <button
                     aria-label="close"
-                    style={
-                      isWhiteTheme
-                        ? { color: colors.primary["600"] }
-                        : { color: colors.background.white }
-                    }
-                    className={cx("closeButton")}
+                    className={cx(
+                      "closeButton",
+                      isWhiteTheme ? "closeButton--white" : null
+                    )}
                     onClick={() => setIsPopoverOpen(false)}
                   >
                     <FontAwesome name="fal fa-times" />
