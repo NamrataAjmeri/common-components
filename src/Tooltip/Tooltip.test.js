@@ -29,7 +29,7 @@ describe("Tooltip tests", () => {
 
     userEvent.hover(children);
 
-    expect(getByRole("title").textContent).toEqual(title);
+    expect(getByRole("text").textContent).toEqual(title);
     expect(getByRole("content").textContent).toEqual(content);
 
     userEvent.unhover(children);
