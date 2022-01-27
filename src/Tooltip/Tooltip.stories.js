@@ -5,7 +5,6 @@ import colors from "../constants/index";
 
 const Template = (args) => (
   <Panel
-    title="Tooltip"
     style={{
       height: "calc(100vh - 40px)",
     }}
@@ -32,7 +31,7 @@ const Template = (args) => (
 export const Default = Template.bind({});
 Default.args = {
   title: "This is a Headline",
-  position: ["left"],
+  position: ["left", "top"],
   show: true,
   shouldShowCloseButton: false,
   isWhiteTheme: false,

@@ -7,7 +7,7 @@ export type alignType = "start" | "end" | "center";
 type TooltipType = {
   /** A boolean to force the tooltip to become visible*/
   show: boolean;
-  /** The possible values are top, right, bottom and left. */
+  /** Represents the position of tooltip w.r.t to the target. Value that is first in the array is given priority. When the tooltip does not fit at the provided position then latter values get considered, if present */
   position: PositionType[];
   /** Boolean value on whether close button should be shown or not on the tooltip */
   shouldShowCloseButton: boolean;

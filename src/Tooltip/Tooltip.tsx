@@ -10,7 +10,7 @@ import { Title } from "..";
 const cx = classNames.bind(styles);
 const Tooltip = ({
   show = false,
-  position = ["top"],
+  position = ["top", "right", "left", "bottom"],
   shouldShowCloseButton,
   title,
   content,
@@ -65,12 +65,17 @@ const Tooltip = ({
             role="tooltip"
           >
             <div className={cx("titleContainer")}>
-              <div
-                className={cx("title", isWhiteTheme ? "title--white" : null)}
-                role="title"
+              <Title
+                style={
+                  isWhiteTheme
+                    ? { color: colors.primary["600"] }
+                    : { color: colors.background.white }
+                }
+                className={cx("title")}
+                type="panelheader"
               >
                 {title}
-              </div>
+              </Title>
               {shouldShowCloseButton && (
                 <div>
                   <button
