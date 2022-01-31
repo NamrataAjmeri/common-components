@@ -11,11 +11,11 @@
   .titleContainer {
     display: flex;
     flex-direction: row;
- }
+  }
 
   .title {
-      margin-bottom: 15px;
-      flex-grow: 1;
+    margin-bottom: 15px;
+    flex-grow: 1;
   }
 
   .icon {
@@ -30,5 +30,3 @@
 .clickable {
   cursor: pointer;
 }
-
-
