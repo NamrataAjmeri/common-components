@@ -10,15 +10,16 @@ import { Title } from "..";
 const cx = classNames.bind(styles);
 const Tooltip = ({
   show = false,
-  position = ["top", "right", "left", "bottom"],
-  shouldShowCloseButton,
+  position = ["top", "left"],
+  shouldShowCloseButton = false,
   title,
   content,
-  width = 350,
+  width,
   isWhiteTheme = false,
   trigger = "hover",
-  align = "end",
+  align = "center",
   children,
+  className,
 }: TooltipType) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(show);
 
@@ -48,6 +49,7 @@ const Tooltip = ({
       align={align}
       padding={10}
       onClickOutside={() => setIsPopoverOpen(false)}
+      containerClassName={cx("tooltipContainer")}
       content={({ position, childRect, popoverRect }) => (
         <ArrowContainer
           position={position}
@@ -60,7 +62,7 @@ const Tooltip = ({
           arrowClassName="popover-arrow"
         >
           <div
-            style={{ width }}
+            style={width ? { maxWidth: width } : { maxWidth: 300 }}
             className={cx("tooltip", isWhiteTheme ? "tooltip--white" : null)}
             role="tooltip"
           >
@@ -68,8 +70,8 @@ const Tooltip = ({
               <Title
                 style={
                   isWhiteTheme
-                    ? { color: colors.primary["600"] }
-                    : { color: colors.background.white }
+                    ? { color: colors.primary["600"], fontSize: "16px" }
+                    : { color: colors.background.white, fontSize: "16px" }
                 }
                 className={cx("title")}
                 type="panelheader"
@@ -91,7 +93,13 @@ const Tooltip = ({
                 </div>
               )}
             </div>
-            <div role="content">{content}</div>
+            <div
+              role="content"
+              style={{ fontSize: "14px" }}
+              className={`${className}`}
+            >
+              {content}
+            </div>
           </div>
         </ArrowContainer>
       )}
