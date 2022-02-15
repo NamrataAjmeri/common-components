@@ -24,7 +24,7 @@ type TooltipType = {
   // Align tooltip with respect to the target
   align: alignType;
   //Adding style to tooltip content
-  className: any;
+  className: string;
   /** Element/Entity around which tooltip has to be displayed */
   children: React.ReactNode | React.ReactNode[];
 };

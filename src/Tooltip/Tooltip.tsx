@@ -8,6 +8,7 @@ import colors from "../constants/index";
 import { Title } from "..";
 
 const cx = classNames.bind(styles);
+const DEFAULT_MAX_WIDTH = 300;
 const Tooltip = ({
   show = false,
   position = ["top", "left"],
@@ -62,7 +63,9 @@ const Tooltip = ({
           arrowClassName="popover-arrow"
         >
           <div
-            style={width ? { maxWidth: width } : { maxWidth: 300 }}
+            style={
+              width ? { maxWidth: width } : { maxWidth: DEFAULT_MAX_WIDTH }
+            }
             className={cx("tooltip", isWhiteTheme ? "tooltip--white" : null)}
             role="tooltip"
           >
@@ -70,8 +73,8 @@ const Tooltip = ({
               <Title
                 style={
                   isWhiteTheme
-                    ? { color: colors.primary["600"], fontSize: "16px" }
-                    : { color: colors.background.white, fontSize: "16px" }
+                    ? { color: colors.primary["600"] }
+                    : { color: colors.background.white }
                 }
                 className={cx("title")}
                 type="panelheader"
@@ -93,11 +96,7 @@ const Tooltip = ({
                 </div>
               )}
             </div>
-            <div
-              role="content"
-              style={{ fontSize: "14px" }}
-              className={`${className}`}
-            >
+            <div role="content" className={className ?? ""}>
               {content}
             </div>
           </div>

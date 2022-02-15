@@ -11,12 +11,12 @@
 }
 
 .tooltipContainer {
-  z-index: var(--zindex-tooltip)
+  z-index: var(--zindex-tooltip);
 }
 
 .titleContainer {
   display: flex;
-  flex-direction: row;  
+  flex-direction: row;
 }
 
 .title {
