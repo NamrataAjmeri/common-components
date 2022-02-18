@@ -1,0 +1,49 @@
+.alertMessageContainer {
+  border-radius: 6px;
+  padding: 15px 0px;
+  color: var(--colour-text-900);
+  display: flex;
+  &--alert {
+    background-color: var(--colour-error-light);
+  }
+
+  &--warning {
+    background-color: var(--colour-warning-light);
+  }
+
+  &--info {
+    background-color: var(--colour-default-light);
+  }
+}
+
+.alerticon {
+  color: var(--colour-error-500);
+}
+
+.warningicon {
+  color: var(--colour-warning);
+}
+
+.infoicon {
+  color: var(--colour-default);
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+}
+
+.text {
+  display: flex;
+  flex-grow: 1;
+  padding-right: 8px;
+  align-items: center;
+}
+
+.informationContainer {
+  display: flex;
+  flex-direction: row;
+  max-height: 60px;
+}

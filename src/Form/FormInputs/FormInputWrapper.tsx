@@ -6,6 +6,7 @@ import FormLabel from "../FormHelpers/FormLabel";
 import FormError from "../FormHelpers/FormError";
 import FormInputWrapperType from "../../types/Form/FormInputs/FormInputWrapper";
 import FormInputType, { FormActionType } from "../../types/Form/FormInputs";
+import { AlertMessage } from "../..";
 
 const cx = classNames.bind(styles);
 
@@ -66,7 +67,11 @@ export const FormInputWrapper = ({
               isError={!!errorMessage}
             />
 
-            <FormError message={!isDisabled ? errorMessage : null} />
+            {!isDisabled && !!errorMessage ? (
+              <AlertMessage type="alert" simplified={true}>
+                {errorMessage}
+              </AlertMessage>
+            ) : null}
           </div>
         );
       }}
