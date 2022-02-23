@@ -67,7 +67,7 @@ export const FormInputWrapper = ({
             />
 
             {!isDisabled && !!errorMessage ? (
-              <AlertMessage type="alert" simplified={true}>
+              <AlertMessage type="alert" simplified>
                 {errorMessage}
               </AlertMessage>
             ) : null}
