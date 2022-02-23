@@ -19,6 +19,6 @@ export default {
   component: AlertMessage,
   parameters: {
     componentSubtitle:
-      "A wrapper component that shows content below the child component on some trigger.",
+      "A wrapper component that shows message below the child component on some trigger.",
   },
 };
