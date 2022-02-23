@@ -1,5 +1,9 @@
 export type MessageType = "alert" | "warning" | "info";
 
+export type AlertMessageIconType = {
+  type: MessageType;
+};
+
 type AlertMessageType = {
   /** Describes if the message displayed is info, alert or warning */
   type: MessageType;
