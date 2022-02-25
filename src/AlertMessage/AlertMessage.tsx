@@ -15,14 +15,12 @@ const AlertMessage = ({
 }: AlertMessageType) => {
   return (
     <div
-      className={
+      className={cx(
+        "alertMessageContainer",
         simplified
-          ? `${cx(
-              "alertMessageContainer",
-              "alertMessageContainer--simplified"
-            )}`
-          : `${cx("alertMessageContainer", `alertMessageContainer--${type}`)}`
-      }
+          ? "alertMessageContainer--simplified"
+          : `alertMessageContainer--${type}`
+      )}
       role="alert-message"
     >
       <div className={cx("informationContainer")}>
