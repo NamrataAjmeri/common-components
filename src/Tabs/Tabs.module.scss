@@ -1,0 +1,27 @@
+.headerContainer {
+    padding-left: 0px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  
+.tabItem {
+    height: 100%;
+  }
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10.5px 14.5px 10.5px 14.5px;
+    width: 100%;
+    border-bottom: 2px solid var(--borderColour);
+  }
+
+.headerActive {
+    font-weight: bold;
+    border-width: 1px 1px 0 1px;
+    border-bottom: 2px solid var(--colour-primary-600);
+  }

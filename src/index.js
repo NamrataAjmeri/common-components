@@ -36,6 +36,8 @@ import Tooltip from "./Tooltip/Tooltip";
 import AlertMessage from "./AlertMessage/AlertMessage";
 import Status from "./Status/Status";
 import ControlLabel from "./ControlLabel/ControlLabel";
+import Tabs from "./Tabs/Tabs";
+import Tab from "./Tabs/Tab";
 
 export {
   CustomTable,
@@ -73,6 +75,8 @@ export {
   AlertMessage,
   Status,
   ControlLabel,
+  Tabs,
+  Tab,
 };
 
 export default {
@@ -111,4 +115,6 @@ export default {
   AlertMessage,
   Status,
   ControlLabel,
+  Tabs,
+  Tab,
 };
