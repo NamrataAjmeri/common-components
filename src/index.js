@@ -38,6 +38,7 @@ import Status from "./Status/Status";
 import ControlLabel from "./ControlLabel/ControlLabel";
 import Tabs from "./Tabs/Tabs";
 import Tab from "./Tabs/Tab";
+import Alert from "./Alert/Alert";
 
 export {
   CustomTable,
@@ -77,6 +78,7 @@ export {
   ControlLabel,
   Tabs,
   Tab,
+  Alert,
 };
 
 export default {
@@ -117,4 +119,5 @@ export default {
   ControlLabel,
   Tabs,
   Tab,
+  Alert,
 };
