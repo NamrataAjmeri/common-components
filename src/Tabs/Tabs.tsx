@@ -7,15 +7,26 @@ import { TabsHeader } from "./TabsHeader";
 const cx = classNames.bind(styles);
 export const TabContext = React.createContext<string>("");
 
-export const Tabs = ({ activeKey, children }: TabsType) => {
+export const Tabs = ({
+  activeKey,
+  onSelect,
+  className,
+  children,
+}: TabsType) => {
   const [activeTab, setActiveTab] = useState(activeKey);
+
   const onClickTabItem = (tab: string) => {
     setActiveTab(tab);
+    onSelect ? onSelect(tab) : null;
   };
+
   const tabElement = Array.isArray(children) ? children : [children];
+
   return (
     <TabContext.Provider value={activeTab}>
-      <TabsHeader onClick={onClickTabItem}>{tabElement}</TabsHeader>
+      <TabsHeader onClick={onClickTabItem} className={className}>
+        {tabElement}
+      </TabsHeader>
       {tabElement}
     </TabContext.Provider>
   );

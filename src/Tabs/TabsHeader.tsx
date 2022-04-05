@@ -6,20 +6,23 @@ import { TabContext } from "./Tabs";
 
 const cx = classNames.bind(styles);
 
-export const TabsHeader = ({ onClick, children }: TabsHeaderType) => {
+export const TabsHeader = ({
+  onClick,
+  className,
+  children,
+}: TabsHeaderType) => {
   const activeTab = useContext(TabContext);
 
   return (
-    <div className={cx("headerContainer")}>
+    <div className={`${className} ${cx("headerContainer")}`}>
       {children.map((tab) => {
         const { tabKey, title, className } = tab.props;
         return (
           <div
-            className={cx(
-              "header",
-              `${className}`,
-              tabKey === activeTab ? "headerActive" : null
-            )}
+            className={`${cx("header", {
+              "header--selected": tabKey === activeTab,
+            })} ${className ?? ""}
+          `}
             key={tabKey}
             onClick={() => onClick(tabKey)}
           >
